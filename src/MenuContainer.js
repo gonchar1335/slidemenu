@@ -1,10 +1,25 @@
-import React, {Component, useState} from "react"
+import React, {Component} from "react"
 import {useState} from "react";
+import MenuButton from "./MenuButton";
+import Menu from "./Menu";
 
 function MenuContainer(){
     const [visible, setVisible] = useState(false)
-    return(
+    const toogleMenu = ()=>{
+        setVisible(!visible);
+    }
+
+    const handleMouseDown = (e)=>{
+        toogleMenu();
+        console.log('clicked')
+        e.stopPropagation();
+    }
+
+    return(  
         <div>
+            <MenuButton handleMouseDown ={handleMouseDown} />
+            <Menu handleMouseDown ={handleMouseDown}
+            menuVisibility = {visible} />
             <div>
                 <p>Найдешь пункт, который здесь лишний</p>
                 <ul>
